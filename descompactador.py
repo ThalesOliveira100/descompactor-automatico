@@ -148,7 +148,6 @@ class Handler(FileSystemEventHandler):
                 timeout=5
             )
 
-            # Registra log do erro
             registrar_log_erro(numero, e)
 
 
