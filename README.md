@@ -8,20 +8,20 @@ Este projeto é um **script Python que monitora continuamente uma pasta específ
 
 ## 🚀 Funcionalidades
 
-- 📁 Monitora automaticamente uma pasta de entrada (`C:/TESTES`)  
-- 🔍 Detecta novos arquivos `.zip`, `.rar`, ou `.7z`  
-- 🔓 Descompacta o conteúdo automaticamente  
-- 📤 Move os arquivos extraídos para diretórios específicos:  
+- Monitora automaticamente uma pasta de entrada (`C:/TESTES`)  
+- Detecta novos arquivos `.zip`, `.rar`, ou `.7z`  
+- Descompacta o conteúdo automaticamente  
+- Move os arquivos extraídos para diretórios específicos:  
   - `DYGNUS.EXE`, `DYGNUS_START.EXE`, `DYGNUS_UPDATE.EXE` → `C:\MULT\DYGNUS`
   - `DYGNUS.EXE` + `DYGNUS_UPDATE.EXE` → `C:\MULT\DYGNUS\SETUP\APP`
   - `DYGNUS_START.EXE` → `C:\MULT\DYGNUS\SETUP`
   - Se houver `PDVLINE.EXE`, também é movido para `C:\MULT\PDV` e `C:\MULT\DYGNUS\SETUP\APP`
   - Se houver `NFE.EXE`, também é movido para `C:\MULT\NFE`
-- 🗒️ Registra logs em `LOG_TESTES.txt` com horário e ID extraído do nome do arquivo, após descompactar um arquivo  
-- 🗒️ Registra logs em `LOG_ERRO.txt` com horário e ID extraído do nome do arquivo, em casos de erro  
-- 🔔 Exibe notificações toast durante as etapas do script  
-- 🧼 Remove o arquivo compactado após processar  
-- 🔁 Roda de forma contínua em background  
+- Registra logs em `LOG_TESTES.txt` com horário e ID extraído do nome do arquivo, após descompactar um arquivo  
+- Registra logs em `LOG_ERRO.txt` com horário e ID extraído do nome do arquivo, em casos de erro  
+- Exibe notificações toast durante as etapas do script  
+- Remove o arquivo compactado após processar  
+- Roda de forma contínua em background  
 
 
 ---
