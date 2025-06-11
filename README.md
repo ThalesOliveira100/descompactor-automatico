@@ -17,11 +17,10 @@ Este projeto é um **script Python que monitora continuamente uma pasta específ
   - `DYGNUS_START.EXE` → `C:\MULT\DYGNUS\SETUP`
   - Se houver `PDVLINE.EXE`, também é movido para `C:\MULT\PDV` e `C:\MULT\DYGNUS\SETUP\APP`
   - Se houver `NFE.EXE`, também é movido para `C:\MULT\NFE`
-- Registra logs em `LOG_TESTES.txt` com horário e ID extraído do nome do arquivo, após descompactar um arquivo  
-- Registra logs em `LOG_ERRO.txt` com horário e ID extraído do nome do arquivo, em casos de erro  
-- Exibe notificações toast durante as etapas do script  
-- Remove o arquivo compactado após processar  
-- Roda de forma contínua em background  
+- Registra logs dos arquivos descompactoes em `LOG_TESTES.txt` e em caso de erros no arquivo `LOG_ERRO.txt`. Estes arquivos são salvos dentro da pasta `C:/TESTES` e são editados sempre que é necessário armazenar um novo log, assim, a informação salva antes não será sobrescrita.
+- Exibe notificações toast (a notificação do Windows) durante as etapas do script, incluindo em casos de erro na descompactação  
+- Remove o arquivo compactado da pasta `C:/TESTES` após redirecionar cada executável para sua pasta de destino
+- Roda de forma contínua em background (sem terminal visível)
 
 
 ---
