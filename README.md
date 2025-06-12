@@ -144,7 +144,7 @@ C:\
 ## 👤 Autor
 
 **Thales Oliveira**  
-🔗 [linkedin.com/in/seu-usuario](https://www.linkedin.com/in/devthalesoliveira)  
+🔗 [linkedin.com/in/devthalesoliveira](https://www.linkedin.com/in/devthalesoliveira)  
 📧 [toliveiradev@outlook.com](mailto:toliveiradev@outlook.com)  
 
 
