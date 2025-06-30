@@ -17,6 +17,7 @@ Este projeto é um **script Python que monitora continuamente uma pasta específ
   - `DYGNUS_START.EXE` → `C:\MULT\DYGNUS\SETUP`
   - Se houver `PDVLINE.EXE`, também é movido para `C:\MULT\PDV` e `C:\MULT\DYGNUS\SETUP\APP`
   - Se houver `NFE.EXE`, também é movido para `C:\MULT\NFE`
+  - Se houver `DYGNUS_ETIQUETAS.EXE`, `DYGNUS_WAVES_ECOMMERCE_ONE.EXE`, `DYGNUS_WOO.EXE` ou `DYGNUS-WAVE.EXE`, estes serão movidos para `C:\MULT\DYGNUS` e para `C:\MULT\DYGNUS\SETUP\APP`
 - Registra logs dos arquivos descompactoes em `LOG_TESTES.txt` e em caso de erros no arquivo `LOG_ERRO.txt`. Estes arquivos são salvos dentro da pasta `C:/TESTES` e são editados sempre que é necessário armazenar um novo log, assim, a informação salva antes não será sobrescrita.
 - Exibe notificações toast (a notificação do Windows) durante as etapas do script, incluindo em casos de erro na descompactação  
 - Remove o arquivo compactado da pasta `C:/TESTES` após redirecionar cada executável para sua pasta de destino
@@ -35,8 +36,12 @@ Este projeto é um **script Python que monitora continuamente uma pasta específ
   - `DYGNUS.EXE`
   - `DYGNUS_START.EXE`
   - `DYGNUS_UPDATE.EXE`
-  - `PDVLINE.EXE` (opcional)
-  - `NFE.EXE` (opcional)
+  - `PDVLINE.EXE`
+  - `NFE.EXE`
+  - `DYGNUS_ETIQUETAS.EXE`
+  - `DYGNUS_WAVES_ECOMMERCE_ONE.EXE`
+  - `DYGNUS_WOO.EXE`
+  - `DYGNUS-WAVE.EXE`
 
 
 ---
@@ -92,13 +97,21 @@ C:\
       ├── DYGNUS\
       │    ├── DYGNUS.EXE
       │    ├── DYGNUS_START.EXE
-      │    └── DYGNUS_UPDATE.EXE
+      │    ├── DYGNUS_UPDATE.EXE
+      |    ├── DYGNUS_ETIQUETAS.7z (se presente)
+      |    ├── DYGNUS_WAVES_ECOMMERCE_ONE.7z (se presente)
+      |    ├── DYGNUS_WOO.7z (se presente)
+      |    └── DYGNUS-WAVE.7z (se presente)
       ├── DYGNUS\
       │    └── SETUP\
       │         ├── DYGNUS_START.EXE
       │         └── APP\
       │              ├── DYGNUS.EXE
       │              ├── DYGNUS_UPDATE.EXE
+      |              ├── DYGNUS_ETIQUETAS.7z (se presente)
+      |              ├── DYGNUS_WAVES_ECOMMERCE_ONE.7z (se presente)
+      |              ├── DYGNUS_WOO.7z (se presente)
+      |              |── DYGNUS-WAVE.7z (se presente)
       │              └── PDVLINE.EXE (se presente)
       └── PDV\
            └── PDVLINE.EXE (se presente)
@@ -122,7 +135,7 @@ C:\
 
 ## ⚠️ Observações
 
-* Arquivos com os nomes [`DYGNUS.7Z`, `DYGNUS_ETIQUETAS.7z`, `DYGNUS_WAVES_ECOMMERCE_ONE.7z`, `DYGNUS_WOO.7z`, `DYGNUS-WAVE.7z`, `NFE.7z`, `PDVLINE.7z`] **são ignorados** propositalmente por não serem gerados no formato ideal "[numero da demanda] - [nome do sistema]".
+* O script oferece suporte para arquivos sem o número/identificador da demanda no início do nome (exemplo: DYGNUS_ETIQUETAS.7z, DYGNUS_WAVES_ECOMMERCE_ONE.7z, DYGNUS_WOO.7z e DYGNUS-WAVE.7z)
 * Em caso de erro ao mover os arquivos (ex: `arquivo em uso`), o erro é notificado via `toast` (a notificação do Windows) e registrado no arquivo LOG_ERROS.txt.
 * O script pode ser adicionado à **pasta de inicialização do Windows** ou ser executado via `Task Scheduler` para iniciar com o sistema.
 
