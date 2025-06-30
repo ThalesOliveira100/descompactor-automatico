@@ -19,7 +19,7 @@ DEST_B = "C:/MULT/DYGNUS/SETUP"
 DEST_C = "C:/MULT/DYGNUS/SETUP/APP"
 DEST_PDV = "C:/MULT/PDV"
 DEST_NFE = "C:/MULT/NFE"
-SEM_SUPORTE = ["DYGNUS.7Z", "DYGNUS_ETIQUETAS.7z", "DYGNUS_WAVES_ECOMMERCE_ONE.7z", "DYGNUS_WOO.7z", "DYGNUS-WAVE.7z", "NFE.7z", "PDVLINE.7z"]
+SEM_NUMERO = ["DYGNUS.7z", "DYGNUS_ETIQUETAS.7z", "DYGNUS_WAVES_ECOMMERCE_ONE.7z", "DYGNUS_WOO.7z", "DYGNUS-WAVE.7z", "NFE.7z", "PDVLINE.7z"]
 
 # Garante que os diretórios de destino existem
 for path in [DEST_A, DEST_B, DEST_C, DEST_PDV, DEST_NFE]:
@@ -30,15 +30,20 @@ def extrair_numero(nome_arquivo):
     match = re.match(r"(\d+)\s", nome_arquivo)
     return match.group(1) if match else "??????"
 
-def registrar_log(numero):
+def registrar_log(nome_arquivo):
     hora = datetime.datetime.now().strftime("%H:%M")
-    link = f"[{numero}: \"(nome da demanda)\"](https://mantis.multilogica.com.br/view.php?id={numero}) {hora}\n\n"
+    if nome_arquivo in SEM_NUMERO:
+        link = f"{nome_arquivo} - {hora}\n\n"
+    else:
+        numero = extrair_numero(nome_arquivo)
+        link = f"[{numero}: \"(nome da demanda)\"](https://mantis.multilogica.com.br/view.php?id={numero}) {hora}\n\n"
+        
     with open(LOG_FILE, "a", encoding="utf-8") as f:
         f.write(link)
 
-def registrar_log_erro(numero, erro):
+def registrar_log_erro(nome_arquivo, erro):
     hora = datetime.datetime.now().strftime("%H:%M")
-    text = f"{hora} - {numero} - Erro {erro}\n"
+    text = f"{hora} - {nome_arquivo} - Erro {erro}\n"
     with open(ERROR_FILE, "a", encoding="utf-8") as f:
         f.write(text)
 
@@ -60,6 +65,12 @@ def processar_arquivos_extraidos(temp_dir):
             mover_arquivo(caminho, [DEST_PDV, DEST_C])
         elif nome_upper == "NFE.EXE":
             mover_arquivo(caminho, [DEST_NFE])
+        elif nome_upper == "DYGNUS_ETIQUETAS.EXE":
+            mover_arquivo(caminho, [DEST_A, DEST_C])
+        elif nome_upper == "DYGNUS_WAVES_ECOMMERCE_ONE.EXE":
+            mover_arquivo(caminho, [DEST_A, DEST_C])
+        elif nome_upper == "DYGNUS_WOO.EXE":
+            mover_arquivo(caminho, [DEST_A, DEST_C])
 
 def aguardar_estabilidade(caminho, tentativas=10, intervalo=1):
     tamanho_anterior = -1
@@ -87,9 +98,6 @@ class Handler(FileSystemEventHandler):
         caminho = event.src_path
         nome_arquivo = os.path.basename(caminho)
 
-        if nome_arquivo.upper() in SEM_SUPORTE:
-            return
-
         extensao = os.path.splitext(nome_arquivo)[1].lower()
         if extensao not in [".zip", ".rar", ".7z"]:
             return
@@ -108,7 +116,6 @@ class Handler(FileSystemEventHandler):
             timeout=3
         )
 
-        numero = extrair_numero(nome_arquivo)
         temp_dir = os.path.join(MONITOR_FOLDER, "TEMP")
 
         # Limpa diretório temporário se existir
@@ -118,7 +125,7 @@ class Handler(FileSystemEventHandler):
 
         if not os.path.exists(temp_dir):
             os.makedirs(temp_dir, exist_ok=True)
-
+    
         try:
             if extensao == ".zip":
                 with ZipFile(caminho, 'r') as zip_ref:
@@ -131,7 +138,7 @@ class Handler(FileSystemEventHandler):
                     rar.extractall(path=temp_dir)
 
             processar_arquivos_extraidos(temp_dir)
-            registrar_log(numero)
+            registrar_log(nome_arquivo)
             os.remove(caminho)
             shutil.rmtree(temp_dir)
 
@@ -148,7 +155,8 @@ class Handler(FileSystemEventHandler):
                 timeout=5
             )
 
-            registrar_log_erro(numero, e)
+            # Registra log do erro
+            registrar_log_erro(nome_arquivo, e)
 
 
 def main():
