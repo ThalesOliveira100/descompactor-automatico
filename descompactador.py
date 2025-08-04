@@ -71,6 +71,8 @@ def processar_arquivos_extraidos(temp_dir):
             mover_arquivo(caminho, [DEST_A, DEST_C])
         elif nome_upper == "DYGNUS_WOO.EXE":
             mover_arquivo(caminho, [DEST_A, DEST_C])
+        elif nome_upper == "PDV_NFCE_SAT.EXE":
+            mover_arquivo(caminho, [DEST_PDV])
 
 def aguardar_estabilidade(caminho, tentativas=10, intervalo=1):
     tamanho_anterior = -1
