@@ -16,6 +16,7 @@ Este projeto é um **script Python que monitora continuamente uma pasta específ
   - `DYGNUS.EXE` + `DYGNUS_UPDATE.EXE` → `C:\MULT\DYGNUS\SETUP\APP`
   - `DYGNUS_START.EXE` → `C:\MULT\DYGNUS\SETUP`
   - Se houver `PDVLINE.EXE`, também é movido para `C:\MULT\PDV` e `C:\MULT\DYGNUS\SETUP\APP`
+  - Se houver `PDV_NFCE_SAT.EXE`, será movido para `C:\MULT\PDV`
   - Se houver `NFE.EXE`, também é movido para `C:\MULT\NFE`
   - Se houver `DYGNUS_ETIQUETAS.EXE`, `DYGNUS_WAVES_ECOMMERCE_ONE.EXE`, `DYGNUS_WOO.EXE` ou `DYGNUS-WAVE.EXE`, estes serão movidos para `C:\MULT\DYGNUS` e para `C:\MULT\DYGNUS\SETUP\APP`
 - Registra logs dos arquivos descompactoes em `LOG_TESTES.txt` e em caso de erros no arquivo `LOG_ERRO.txt`. Estes arquivos são salvos dentro da pasta `C:/TESTES` e são editados sempre que é necessário armazenar um novo log, assim, a informação salva antes não será sobrescrita.
@@ -37,6 +38,7 @@ Este projeto é um **script Python que monitora continuamente uma pasta específ
   - `DYGNUS_START.EXE`
   - `DYGNUS_UPDATE.EXE`
   - `PDVLINE.EXE`
+  - `PDV_NFCE_SAT.EXE`
   - `NFE.EXE`
   - `DYGNUS_ETIQUETAS.EXE`
   - `DYGNUS_WAVES_ECOMMERCE_ONE.EXE`
@@ -114,6 +116,7 @@ C:\
       |              |── DYGNUS-WAVE.7z (se presente)
       │              └── PDVLINE.EXE (se presente)
       └── PDV\
+           |── PDV_NFCE_SAT.EXE (se presente)
            └── PDVLINE.EXE (se presente)
       └── NFE\
            └── NFE.EXE (se presente)
